@@ -1,0 +1,8 @@
+com/ug/portal/model/Student.class
+com/ug/portal/model/LoginSession.class
+com/ug/portal/service/StudentService.class
+com/ug/portal/controller/AdminController.class
+com/ug/portal/repository/StudentRepository.class
+com/ug/portal/controller/AuthController.class
+com/ug/portal/UgStudentPortalApplication.class
+com/ug/portal/repository/LoginSessionRepository.class
