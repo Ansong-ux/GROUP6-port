@@ -1,6 +1,17 @@
 import { NextResponse } from "next/server"
 import pool from "@/lib/db"
 
+interface LoginSessionRow {
+  id: number
+  student_id: string
+  name: string
+  email: string
+  login_time: string
+  session_status: string
+  ip_address: string
+  student_registered_at: string | null
+}
+
 export async function GET() {
   try {
     // Get all active login sessions with student details
@@ -21,7 +32,7 @@ export async function GET() {
       LIMIT 100
     `)
 
-    const students = result.rows.map((row) => ({
+    const students = result.rows.map((row: LoginSessionRow) => ({
       id: row.id,
       name: row.name,
       studentId: row.student_id,
