@@ -152,7 +152,7 @@ export default function StudentDashboard({ userData, onLogout }: StudentDashboar
               </div>
               <div className="detail-item">
                 <span className="label">Program</span>
-                <span className="value">Computer Science</span>
+                <span className="value">BSC Computer Engineering </span>
               </div>
               <div className="detail-item">
                 <span className="label">Level</span>
@@ -174,14 +174,14 @@ export default function StudentDashboard({ userData, onLogout }: StudentDashboar
           </div>
           <div className="progress-list">
             <div className="progress-item">
-              <span className="course-name">Computer Science Fundamentals</span>
+              <span className="course-name">Data Commmunication </span>
               <div className="progress-bar">
                 <div className="progress-fill" style={{ width: "85%" }}></div>
               </div>
               <span className="progress-score">85%</span>
             </div>
             <div className="progress-item">
-              <span className="course-name">Mathematics for Computing</span>
+              <span className="course-name">Data structures and Algorithm </span>
               <div className="progress-bar">
                 <div className="progress-fill" style={{ width: "78%" }}></div>
               </div>
@@ -195,7 +195,7 @@ export default function StudentDashboard({ userData, onLogout }: StudentDashboar
               <span className="progress-score">92%</span>
             </div>
             <div className="progress-item">
-              <span className="course-name">Statistics</span>
+              <span className="course-name">Differential Equation</span>
               <div className="progress-bar">
                 <div className="progress-fill" style={{ width: "71%" }}></div>
               </div>
