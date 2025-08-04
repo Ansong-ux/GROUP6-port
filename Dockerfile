@@ -1,15 +1,33 @@
-# Use a Maven image with OpenJDK 21
-FROM maven:3.9.8-openjdk-21
+# Stage 1: Build the Spring Boot application
+FROM maven:3.9.6-eclipse-temurin-21-alpine AS build
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the pom.xml and download dependencies to leverage Docker layer caching
+# Copy the Maven project files (pom.xml, src folder, etc.)
+# This step is optimized to use Docker layer caching.
+# Copy pom.xml first to download dependencies if it changes.
 COPY pom.xml .
-RUN mvn dependency:go-offline
-
-# Copy the rest of the application code
 COPY src ./src
 
-# Build the application
-RUN mvn clean install
+# Build the Spring Boot application.
+# The 'package' goal will compile the code, run tests (if any), and create the JAR.
+RUN mvn clean package -DskipTests
+
+# Stage 2: Create the final lean image
+# Use a smaller JRE image for production deployment
+FROM eclipse-temurin:21-jre-alpine
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the built JAR file from the build stage
+# The name of your JAR will typically be artifactId-version.jar
+# (e.g., ug-student-portal-1.0.0.jar based on your pom.xml and version)
+COPY --from=build /app/target/ug-student-portal-1.0.0.jar ug-student-portal.jar
+
+# Expose the port your Spring Boot application runs on (default is 8080)
+EXPOSE 8080
+
+# Command to run the Spring Boot application
+ENTRYPOINT ["java", "-jar", "ug-student-portal.jar"]
